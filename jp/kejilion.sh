@@ -825,7 +825,7 @@ docker_ipv6_off() {
 	# 現在のIPv6ステータスを確認してください
 	local CURRENT_IPV6=$(echo "$ORIGINAL_CONFIG" | jq -r '.ipv6 // false')
 
-	# 元の構成を新しい構成と比較します
+	# 元の構成と新しい構成を比較します
 	if [[ "$CURRENT_IPV6" == "false" ]]; then
 		echo -e "${gl_huang}IPv6アクセスは現在閉じられています${gl_bai}"
 	else
@@ -1558,7 +1558,7 @@ fi
 
 add_yuming() {
 	  ip_address
-	  echo -e "最初にドメイン名をネイティブIPに解決します。${gl_huang}$ipv4_address  $ipv6_address${gl_bai}"
+	  echo -e "最初にドメイン名をローカルIPに解決します。${gl_huang}$ipv4_address  $ipv6_address${gl_bai}"
 	  read -e -p "IPまたは解決されたドメイン名を入力してください：" yuming
 }
 
@@ -1740,7 +1740,7 @@ nginx_waf() {
 		wget -O /home/web/nginx.conf "${gh_proxy}raw.githubusercontent.com/kejilion/nginx/main/nginx10.conf"
 	fi
 
-	# モードパラメーターに従ってWAFをオンまたはオフにすることを決定します
+	# モードパラメーターに従ってWAFをオンまたはオフにすることにしました
 	if [ "$mode" == "on" ]; then
 		# WAFをオンにしてください：コメントを削除します
 		sed -i 's|# load_module /etc/nginx/modules/ngx_http_modsecurity_module.so;|load_module /etc/nginx/modules/ngx_http_modsecurity_module.so;|' /home/web/nginx.conf > /dev/null 2>&1
@@ -3892,7 +3892,7 @@ frps_panel() {
 		echo "------------------------"
 		echo "7. IP+ポートアクセスを許可8。BlockIP+ポートアクセス"
 		echo "------------------------"
-		echo "00。サービスのステータスを更新します。前のメニューに戻ります"
+		echo "00。サービスのステータスを更新します0。前のメニューに戻ります"
 		echo "------------------------"
 		read -e -p "あなたの選択を入力してください：" choice
 		case $choice in
@@ -3946,7 +3946,7 @@ frps_panel() {
 
 			8)
 				send_stats "IPアクセスをブロックします"
-				echo "アンチジェネレーションドメイン名にアクセスした場合、この関数を使用して、より安全なIP+ポートアクセスをブロックできます。"
+				echo "アンチジェネレーションドメイン名にアクセスした場合は、この関数を使用して、より安全なIP+ポートアクセスをブロックします。"
 				read -e -p "ブロックする必要があるポートを入力してください。" frps_port
 				block_host_port "$frps_port" "$ipv4_address"
 				;;
@@ -4147,7 +4147,7 @@ yt_menu_pro() {
 					--no-overwrites --no-post-overwrites
 				read -e -p "実行が完了したら、キーを押して続行します..." ;;
 			8)
-				send_stats "mp3ダウンロード"
+				send_stats "MP3ダウンロード"
 				read -e -p "ビデオリンクを入力してください：" url
 				yt-dlp -P "$VIDEO_DIR" -x --audio-format mp3 \
 					--write-subs --sub-langs all \
@@ -4521,7 +4521,7 @@ echo -e "${gl_lv}ルートログインがセットアップされます！${gl_b
 
 root_use() {
 clear
-[ "$EUID" -ne 0 ] && echo -e "${gl_huang}ヒント：${gl_bai}この機能では、ルートユーザーを実行する必要があります！" && break_end && kejilion
+[ "$EUID" -ne 0 ] && echo -e "${gl_huang}ヒント：${gl_bai}この機能には、ルートユーザーを実行する必要があります！" && break_end && kejilion
 }
 
 
@@ -5278,7 +5278,7 @@ optimize_balanced() {
 
 # デフォルト設定関数を復元します
 restore_defaults() {
-	echo -e "${gl_lv}デフォルト設定に復元...${gl_bai}"
+	echo -e "${gl_lv}デフォルト設定に復元します...${gl_bai}"
 
 	echo -e "${gl_lv}ファイル記述子を復元します...${gl_bai}"
 	ulimit -n 1024
@@ -6418,7 +6418,7 @@ rsync_manager() {
 		echo
 		echo "1.新しいタスクを作成します2。タスクを削除します"
 		echo "3.リモートエンドにローカル同期を実行する4。ローカルエンドにリモート同期を実行する"
-		echo "5.タイミングタスクを作成6.タイミングタスクを削除します"
+		echo "5.タイミングタスクを作成6。タイミングタスクを削除します"
 		echo "---------------------------------"
 		echo "0。前のメニューに戻ります"
 		echo "---------------------------------"
@@ -6549,7 +6549,7 @@ linux_tools() {
 	  echo -e "基本的なツール"
 	  echo -e "${gl_kjlan}------------------------"
 	  echo -e "${gl_kjlan}1.   ${gl_bai}カールダウンロードツール${gl_huang}★${gl_bai}                   ${gl_kjlan}2.   ${gl_bai}WGETダウンロードツール${gl_huang}★${gl_bai}"
-	  echo -e "${gl_kjlan}3.   ${gl_bai}SUDOスーパー管理許可ツール${gl_kjlan}4.   ${gl_bai}Socat Communication Connection Tool"
+	  echo -e "${gl_kjlan}3.   ${gl_bai}sudo 超级管理权限工具             ${gl_kjlan}4.   ${gl_bai}Socat Communication Connection Tool"
 	  echo -e "${gl_kjlan}5.   ${gl_bai}HTOPシステム監視ツール${gl_kjlan}6.   ${gl_bai}IFTOPネットワークトラフィック監視ツール"
 	  echo -e "${gl_kjlan}7.   ${gl_bai}ジップzip圧縮減圧ツールを解凍します${gl_kjlan}8.   ${gl_bai}TAR GZ圧縮減圧ツール"
 	  echo -e "${gl_kjlan}9.   ${gl_bai}TMUXマルチチャネルバックグラウンドランニングツール${gl_kjlan}10.  ${gl_bai}Live StreamingツールをエンコードするFFMPEGビデオ"
@@ -6557,7 +6557,7 @@ linux_tools() {
 	  echo -e "${gl_kjlan}11.  ${gl_bai}BTOPモダン監視ツール${gl_huang}★${gl_bai}             ${gl_kjlan}12.  ${gl_bai}範囲ファイル管理ツール"
 	  echo -e "${gl_kjlan}13.  ${gl_bai}NCDUディスク職業視聴ツール${gl_kjlan}14.  ${gl_bai}FZFグローバル検索ツール"
 	  echo -e "${gl_kjlan}15.  ${gl_bai}VIMテキストエディター${gl_kjlan}16.  ${gl_bai}ナノテキストエディター${gl_huang}★${gl_bai}"
-	  echo -e "${gl_kjlan}17.  ${gl_bai}Gitバージョン制御システム"
+	  echo -e "${gl_kjlan}17.  ${gl_bai}gitバージョン制御システム"
 	  echo -e "${gl_kjlan}------------------------"
 	  echo -e "${gl_kjlan}21.  ${gl_bai}マトリックス画面保証${gl_kjlan}22.  ${gl_bai}列車のスクリーンのセキュリティ"
 	  echo -e "${gl_kjlan}26.  ${gl_bai}テトリスゲーム${gl_kjlan}27.  ${gl_bai}ヘビを食べるゲーム"
@@ -7904,7 +7904,7 @@ linux_ldnmp() {
 
 
 	  ldnmp_web_on
-	  echo "データベースアドレス：MySQL"
+	  echo "データベースアドレス：mysql"
 	  echo "データベース名：$dbname"
 	  echo "ユーザー名：$dbuse"
 	  echo "パスワード：$dbusepasswd"
@@ -7940,7 +7940,7 @@ linux_ldnmp() {
 	  restart_ldnmp
 
 	  ldnmp_web_on
-	  echo "データベースアドレス：MySQL"
+	  echo "データベースアドレス：mysql"
 	  echo "ユーザー名：$dbuse"
 	  echo "パスワード：$dbusepasswd"
 	  echo "データベース名：$dbname"
@@ -7979,7 +7979,7 @@ linux_ldnmp() {
 
 
 	  ldnmp_web_on
-	  echo "データベースアドレス：MySQL"
+	  echo "データベースアドレス：mysql"
 	  echo "データベースポート：3306"
 	  echo "データベース名：$dbname"
 	  echo "ユーザー名：$dbuse"
@@ -8017,7 +8017,7 @@ linux_ldnmp() {
 
 
 	  ldnmp_web_on
-	  echo "データベースアドレス：MySQL"
+	  echo "データベースアドレス：mysql"
 	  echo "データベースポート：3306"
 	  echo "データベース名：$dbname"
 	  echo "ユーザー名：$dbuse"
@@ -8028,7 +8028,7 @@ linux_ldnmp() {
 	  echo "Redisポート：6379"
 	  echo ""
 	  echo "ウェブサイトURL：https：//$yuming"
-	  echo "バックグラウンドログインパス： /admin"
+	  echo "バックエンドログインパス： /admin"
 	  echo "------------------------"
 	  echo "ユーザー名：admin"
 	  echo "パスワード：管理者"
@@ -8081,7 +8081,7 @@ linux_ldnmp() {
 
 
 	  ldnmp_web_on
-	  echo "データベースアドレス：MySQL"
+	  echo "データベースアドレス：mysql"
 	  echo "データベース名：$dbname"
 	  echo "ユーザー名：$dbuse"
 	  echo "パスワード：$dbusepasswd"
@@ -8120,7 +8120,7 @@ linux_ldnmp() {
 	  clear
 	  ldnmp_web_on
 	  echo "データベースプレフィックス：typecho_"
-	  echo "データベースアドレス：MySQL"
+	  echo "データベースアドレス：mysql"
 	  echo "ユーザー名：$dbuse"
 	  echo "パスワード：$dbusepasswd"
 	  echo "データベース名：$dbname"
@@ -8158,7 +8158,7 @@ linux_ldnmp() {
 
 	  clear
 	  ldnmp_web_on
-	  echo "データベースアドレス：MySQL"
+	  echo "データベースアドレス：mysql"
 	  echo "データベースポート：3306"
 	  echo "データベース名：$dbname"
 	  echo "ユーザー名：$dbuse"
@@ -8259,7 +8259,7 @@ linux_ldnmp() {
 			  ;;
 		  2)
 			  echo "データベースのバックアップは、.GZ-endコンプレッションパッケージである必要があります。 Pagoda/1panelのバックアップデータのインポートをサポートするために、/home/directoryに入れてください。"
-			  read -e -p "ダウンロードリンクを入力して、バックアップデータをリモートでダウンロードすることもできます。 Enterを直接押して、リモートダウンロードをスキップします：" url_download_db
+			  read -e -p "ダウンロードリンクを入力して、バックアップデータをリモートでダウンロードすることもできます。 Enterを直接押してリモートダウンロードをスキップします。" url_download_db
 
 			  cd /home/
 			  if [ -n "$url_download_db" ]; then
@@ -8284,7 +8284,7 @@ linux_ldnmp() {
 	  restart_ldnmp
 	  ldnmp_web_on
 	  prefix="web$(shuf -i 10-99 -n 1)_"
-	  echo "データベースアドレス：MySQL"
+	  echo "データベースアドレス：mysql"
 	  echo "データベース名：$dbname"
 	  echo "ユーザー名：$dbuse"
 	  echo "パスワード：$dbusepasswd"
@@ -12229,7 +12229,7 @@ linux_Settings() {
 	  echo -e "${gl_kjlan}29.  ${gl_bai}ウイルススキャンツール${gl_huang}★${gl_bai}                     ${gl_kjlan}30.  ${gl_bai}ファイルマネージャー"
 	  echo -e "${gl_kjlan}------------------------"
 	  echo -e "${gl_kjlan}31.  ${gl_bai}システム言語を切り替えます${gl_kjlan}32.  ${gl_bai}コマンドラインの美化ツール${gl_huang}★${gl_bai}"
-	  echo -e "${gl_kjlan}33.  ${gl_bai}システムリサイクルビンをセットアップします${gl_kjlan}34.  ${gl_bai}系统备份与恢复"
+	  echo -e "${gl_kjlan}33.  ${gl_bai}システムリサイクルビンをセットアップします${gl_kjlan}34.  ${gl_bai}システムのバックアップと回復"
 	  echo -e "${gl_kjlan}35.  ${gl_bai}SSHリモート接続ツール${gl_kjlan}36.  ${gl_bai}ハードディスクパーティション管理ツール"
 	  echo -e "${gl_kjlan}37.  ${gl_bai}コマンドラインの履歴${gl_kjlan}38.  ${gl_bai}RSYNCリモート同期ツール"
 	  echo -e "${gl_kjlan}39.  ${gl_bai}コマンドのお気に入り${gl_huang}★${gl_bai}"
@@ -12393,7 +12393,7 @@ EOF
 						send_stats "SSHポート変更を終了します"
 						break
 					else
-						echo "ポート番号が無効です。1〜65535の数字を入力してください。"
+						echo "ポート番号は無効です。1〜65535の数字を入力してください。"
 						send_stats "無効なSSHポート入力"
 						break_end
 					fi
@@ -12604,7 +12604,7 @@ EOF
 						  ;;
 					  4)
 					   read -e -p "ユーザー名を入力してください：" username
-					   # sudoersファイルからユーザーのsudo許可を削除します
+					   # sudoersファイルからユーザーのsudoアクセス許可を削除します
 					   sed -i "/^$username\sALL=(ALL:ALL)\sALL/d" /etc/sudoers
 
 						  ;;
@@ -12879,7 +12879,7 @@ EOF
 								  break  # 跳出
 								  ;;
 						  esac
-						  send_stats "タイムされたタスクを追加します"
+						  send_stats "時限タスクを追加します"
 						  ;;
 					  2)
 						  read -e -p "削除する必要があるキーワードを入力してください。" kquest
@@ -13124,7 +13124,7 @@ EOF
 			  echo "TG-BOTモニタリングと早期警告機能"
 			  echo "ビデオの紹介：https：//youtu.be/vll-eb3z_ty"
 			  echo "------------------------------------------------"
-			  echo "ネイティブCPU、メモリ、ハードディスク、トラフィック、SSHログインのリアルタイム監視と早期警告を実現するために、TG Robot APIとユーザーIDを構成する必要があります。"
+			  echo "ネイティブCPU、メモリ、ハードディスク、トラフィック、およびSSHログインのリアルタイム監視と早期警告を実現するために、TG Robot APIとユーザーIDを構成する必要があります。"
 			  echo "しきい値に達した後、ユーザーはユーザーに送信されます"
 			  echo -e "${gl_hui}- トラフィックに関しては、サーバーの再起動が再計算されます -${gl_bai}"
 			  read -e -p "必ず続行しますか？ （y/n）：" choice
@@ -13484,7 +13484,7 @@ linux_file() {
 				;;
 			3)  # 修改目录权限
 				read -e -p "ディレクトリ名を入力してください：" dirname
-				read -e -p "許可（755など）を入力してください。" perm
+				read -e -p "許可を入力してください（755など）：" perm
 				chmod "$perm" "$dirname" && echo "許可が変更されました" || echo "変更に失敗しました"
 				send_stats "ディレクトリ権限を変更します"
 				;;
@@ -13516,7 +13516,7 @@ linux_file() {
 				;;
 			13) # 修改文件权限
 				read -e -p "ファイル名を入力してください：" filename
-				read -e -p "許可（755など）を入力してください。" perm
+				read -e -p "許可を入力してください（755など）：" perm
 				chmod "$perm" "$filename" && echo "許可が変更されました" || echo "変更に失敗しました"
 				send_stats "ファイル権限を変更します"
 				;;
