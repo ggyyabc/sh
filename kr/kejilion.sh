@@ -3946,7 +3946,7 @@ frps_panel() {
 
 			8)
 				send_stats "IP 액세스를 차단하십시오"
-				echo "반세기 도메인 이름에 액세스 한 경우이 기능을 사용하여 IP+ 포트 액세스를 차단할 수 있습니다."
+				echo "반세기 도메인 이름에 액세스 한 경우이 기능을 사용하여 IP+ 포트 액세스를 차단하십시오."
 				read -e -p "차단 해야하는 포트를 입력하십시오." frps_port
 				block_host_port "$frps_port" "$ipv4_address"
 				;;
@@ -8028,7 +8028,7 @@ linux_ldnmp() {
 	  echo "Redis Port : 6379"
 	  echo ""
 	  echo "웹 사이트 URL : https : //$yuming"
-	  echo "백엔드 로그인 경로 : /admin"
+	  echo "백그라운드 로그인 경로 : /admin"
 	  echo "------------------------"
 	  echo "사용자 이름 : 관리자"
 	  echo "비밀번호 : 관리자"
@@ -13581,7 +13581,7 @@ linux_file() {
 
 				# -r 옵션을 사용하여 디렉토리를 재귀 적으로 복사하십시오
 				cp -r "$src_path" "$dest_path" && echo "파일 또는 디렉토리가 복사되었습니다$dest_path" || echo "파일이나 디렉토리를 복사하지 못했습니다"
-				send_stats "파일 또는 디렉토리를 복사하십시오"
+				send_stats "파일 또는 디렉토리를 복사합니다"
 				;;
 
 

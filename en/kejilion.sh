@@ -1740,7 +1740,7 @@ nginx_waf() {
 		wget -O /home/web/nginx.conf "${gh_proxy}raw.githubusercontent.com/kejilion/nginx/main/nginx10.conf"
 	fi
 
-	# Decide to turn on or off WAF according to mode parameters
+	# Decide to turn on or off WAF according to the mode parameter
 	if [ "$mode" == "on" ]; then
 		# Turn on WAF: Remove comments
 		sed -i 's|# load_module /etc/nginx/modules/ngx_http_modsecurity_module.so;|load_module /etc/nginx/modules/ngx_http_modsecurity_module.so;|' /home/web/nginx.conf > /dev/null 2>&1
@@ -3946,7 +3946,7 @@ frps_panel() {
 
 			8)
 				send_stats "Block IP access"
-				echo "If you have accessed the anti-generation domain name, you can use this function to block IP+ port access, which is more secure."
+				echo "If you have accessed the anti-generation domain name, use this function to block IP+ port access, which is more secure."
 				read -e -p "Please enter the port you need to block:" frps_port
 				block_host_port "$frps_port" "$ipv4_address"
 				;;
@@ -5959,7 +5959,7 @@ ssh_manager() {
 	while true; do
 		clear
 		echo "SSH Remote Connection Tool"
-		echo "Can connect to other Linux systems via SSH"
+		echo "Can be connected to other Linux systems via SSH"
 		echo "------------------------"
 		list_connections
 		echo "1. Create a new connection 2. Use a connection 3. Delete a connection"
@@ -8028,7 +8028,7 @@ linux_ldnmp() {
 	  echo "Redis port: 6379"
 	  echo ""
 	  echo "Website url: https://$yuming"
-	  echo "Backend login path: /admin"
+	  echo "Background login path: /admin"
 	  echo "------------------------"
 	  echo "Username: admin"
 	  echo "Password: admin"
